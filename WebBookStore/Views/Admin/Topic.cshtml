@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebBookStore.Models.ChuDe>
+
+@{
+    ViewBag.Title = "Topic";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Topic</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateTopic")
+</p>
+<table class="table" border="5">
+    <tr>
+        <th>
+            <label class="control-label col-md-2" for="TenCD">Topic Name</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChuDe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTopic", new { id=item.MaCD }) |           
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaCD })
+        </td>
+    </tr>
+}
+
+</table>

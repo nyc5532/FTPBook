@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/shop-homepage.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'qwe' });</script>
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href=""><img class="logo-custom" src="~/images/Logo_Store.gif" width="40px"/>FPTBook Store</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav";>
+                    <li>
+                        @Html.ActionLink("HOMEPAGE", "Index", "BookStore")
+                    </li>
+                    <li>
+                        @Html.ActionLink("REGISTER", "Register", "Customer")
+                    </li>
+                    <li>
+                        @Html.ActionLink("LOGIN", "Login", "Customer")
+                    </li>
+                    <li>
+                        @Html.Action("GiohangPartial", "GioHang")
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+                @Html.Action("Topic", "BookStore")
+
+                @Html.Action("Publisher", "BookStore")
+            </div>
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                            <div class="w3-content w3-section" style="max-width:500px">
+                                <img class="mySlides" src="~/images/cover.jpg" style="width:170%">
+                                <img class="mySlides" src="~/images/cover2.jpg" style="width:170%">
+                                <img class="mySlides" src="~/images/cover3.jpg" style="width:170%">
+                            </div>
+
+                            <script>
+                                var myIndex = 0;
+                                carousel();
+
+                                function carousel() {
+                                    var i;
+                                    var x = document.getElementsByClassName("mySlides");
+                                    for (i = 0; i < x.length; i++) {
+                                        x[i].style.display = "none";
+                                    }
+                                    myIndex++;
+                                    if (myIndex > x.length) { myIndex = 1 }
+                                    x[myIndex - 1].style.display = "block";
+                                    setTimeout(carousel, 2000); // Change image every 2 seconds
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    @RenderBody()
+                </div>
+
+                <!-- /.container -->
+                <!-- Footer -->
+                <footer>
+                    <h3 style="font-weight: bold" ;>FPT BOOK</h3>
+
+                    <p class="copyright">Papatronic © 2022</p>
+                </footer>
+
+            </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+   
+</body>
+</html>
+<style

@@ -1,0 +1,85 @@
+﻿@model WebBookStore.Models.Sach
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Create new book</h2>
+
+@using (Html.BeginForm("CreateBook", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="TenSach">Title</label>
+            <div class="col-md-10">
+                <input type="text" name="TenSach" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="GiaBan">Price</label>
+            <div class="col-md-10">
+                <input type="number" name="GiaBan" min="1" max="1000" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MoTa">Discription</label>
+            <div class="col-md-10">
+                <textarea name="MoTa" autofocus>Discription here.....</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="AnhBia">Image</label>
+            <div class="col-md-10">
+                <input type="file" name="fileupload" accept=".png,.jpeg,.jpg" required />
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="NgayCapNhap">Date</label>
+            <div class="col-md-10">
+                <input type="date" name="Ngaycapnhat" required/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="SoLuongTon">Quantity</label>
+            <div class="col-md-10">
+                <input type="number" name="SoLuongTon" min="1" max="100" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MaNXB">Publisher</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaNXB")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MaCd">Topic</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaCD")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default">
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Return List Manager", "Book")
+</div>

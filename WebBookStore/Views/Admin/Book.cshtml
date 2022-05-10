@@ -1,0 +1,88 @@
+﻿@using WebBookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebBookStore.Models.Sach>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Admintrator";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>MANAGEMENT OF BOOK INFORMATION</h2>
+
+<p>
+    @Html.ActionLink("➕ Create New", "CreateBook")
+</p>
+<table class="table" border="5">
+    <tr style="color:red">
+        <th style="width:100px; text-align:center"> ID </th>
+        <th style="width:200px; text-align:center"> Title </th>
+        <th style="width:100px; text-align:center"> Price </th>
+        <th style="width:300px; text-align:center"> Discription </th>
+        <th style="width:150px; text-align:center"> Image </th>
+        <th style="width:100px; text-align:center"> Update </th>
+        <th style="width:120px; text-align:center"> Quantity </th>
+        <th style="width:100px; text-align:center"> Topic </th>
+        <th style="width:200px; text-align:center"> Publishing </th>
+        <th style="width:300px; text-align:center">  </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td style="text-align:center">
+        @Html.DisplayFor(modelItem => item.MaSach)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenSach)
+    </td>
+    <td style="text-align:center">
+        @Html.DisplayFor(modelItem => item.GiaBan)
+    </td>
+    <td>
+        @Truncate(item.MoTa, 100)
+    </td>
+    <td>
+        <img style="max-height: 150px" src="@Url.Content("~/product_imgs/"+ item.AnhBia)" />
+    </td>
+    <td style="text-align:center">
+        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+    </td>
+    <td style="text-align:center">
+        @Html.DisplayFor(modelItem => item.SoLuongTon)
+    </td>
+    <td style="text-align:center"> 
+        @Html.DisplayFor(modelItem => item.ChuDe.TenChuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
+    </td>
+    <td>
+        @Html.ActionLink(" 🔧 ", "EditBook", new { id = item.MaSach }) |
+        @Html.ActionLink(" 📕 ", "DetailBook", new { id = item.MaSach }) |
+        @Html.ActionLink(" ❌ ", "DeleteBook", new { id = item.MaSach })
+    </td>
+</tr>
+    }
+</table>
+Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+<div class="Menupage">
+    @Html.PagedListPager(Model, page => Url.Action("Book", new { page = page }))
+</div>
+
+<style>
+    .Menupage li {
+        display: inline;
+    }
+</style>

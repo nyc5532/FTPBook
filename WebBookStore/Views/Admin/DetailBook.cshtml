@@ -1,0 +1,71 @@
+﻿@model WebBookStore.Models.Sach
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h3>BOOK DETAILS</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Title:
+        </dt>
+        <dd style="font-weight: bold;">
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+        <br>
+        <dt>
+            Price:
+        </dt>
+        <dd>
+            @String.Format("{0,0}", Model.GiaBan) $
+        </dd>
+        <br>
+        <dt>
+            Discription:
+        </dt>
+        <dd style=" width:600px; text-align:justify">
+            @Html.DisplayFor(Model => Model.MoTa)
+        </dd>
+        <br>
+        <dt>
+            Img:
+        </dt>
+        <dd>
+            <img src="@Url.Content("/product_imgs/"+ Model.AnhBia)" width="200px" />
+        </dd>
+        <br>
+        <dt>
+            Update:
+        </dt>
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+        </dd>
+        <br>
+        <dt>
+            Quantity:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+        <br>
+        <dt>
+            Topic:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+        </dd>
+        <br>
+        <dt>
+            Publishing:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditBook", new { id = Model.MaSach }) |
+    @Html.ActionLink("Return", "Book")
+</p>
